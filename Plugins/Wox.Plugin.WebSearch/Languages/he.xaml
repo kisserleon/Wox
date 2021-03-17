@@ -8,6 +8,7 @@
     <system:String x:Key="wox_plugin_websearch_confirm">אשר</system:String>
     <system:String x:Key="wox_plugin_websearch_action_keyword">מילת מפתח לפעולה</system:String>
     <system:String x:Key="wox_plugin_websearch_url">קישור</system:String>
+    <system:String x:Key="wox_plugin_websearch_default_url">Default URL</system:String>
     <system:String x:Key="wox_plugin_websearch_search">חפש</system:String>
     <system:String x:Key="wox_plugin_websearch_enable_suggestion">אפשר הצעות חיפוש</system:String>
     <system:String x:Key="wox_plugin_websearch_pls_select_web_search">אנא בחר חיפוש אינטרנטי</system:String>

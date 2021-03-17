@@ -24,6 +24,11 @@ namespace Wox.Plugin.WebSearch
         public string Url { get; set; }
         public bool Enabled { get; set; }
 
+        /// <summary>
+        /// The default URL that without keyword
+        /// </summary>
+        public string DefaultUrl { get; set; }
+
         public SearchSource DeepCopy()
         {
             var webSearch = new SearchSource
@@ -32,7 +37,8 @@ namespace Wox.Plugin.WebSearch
                 ActionKeyword = string.Copy(ActionKeyword),
                 Url = string.Copy(Url),
                 Icon = string.Copy(Icon),
-                Enabled = Enabled
+                Enabled = Enabled,
+                DefaultUrl = DefaultUrl,
             };
             return webSearch;
         }

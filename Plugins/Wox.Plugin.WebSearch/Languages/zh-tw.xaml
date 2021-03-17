@@ -8,6 +8,7 @@
     <system:String x:Key="wox_plugin_websearch_confirm">確定</system:String>
     <system:String x:Key="wox_plugin_websearch_action_keyword">觸發關鍵字</system:String>
     <system:String x:Key="wox_plugin_websearch_url">URL</system:String>
+    <system:String x:Key="wox_plugin_websearch_default_url">Default URL</system:String>
     <system:String x:Key="wox_plugin_websearch_search">搜尋</system:String>
     <system:String x:Key="wox_plugin_websearch_enable_suggestion">啟用搜尋建議</system:String>
     <system:String x:Key="wox_plugin_websearch_pls_select_web_search">請選擇一項</system:String>

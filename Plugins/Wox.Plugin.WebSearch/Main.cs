@@ -53,44 +53,41 @@ namespace Wox.Plugin.WebSearch
                     var title = keyword;
                     string subtitle = _context.API.GetTranslation("wox_plugin_websearch_search") + " " + searchSource.Title;
 
+                    var result = new Result
+                    {
+                        Title = title ?? subtitle,
+                        SubTitle = title == null ? string.Empty : subtitle,
+                        Score = 100,
+                        IcoPath = searchSource.IconPath,
+                        ActionKeywordAssigned = searchSource.ActionKeyword == SearchSourceGlobalPluginWildCardSign ? string.Empty : searchSource.ActionKeyword,
+                    };
+
+                    string url;
                     if (string.IsNullOrEmpty(keyword))
                     {
-                        var result = new Result
-                        { 
-                            Score=100,
-                            Title = subtitle,
-                            SubTitle = string.Empty,
-                            IcoPath = searchSource.IconPath
-                        };
-                        results.Add(result);
+                        url = searchSource.DefaultUrl ?? searchSource.Url;
+                        keyword = "";
                     }
                     else
                     {
-                        var result = new Result
-                        {
-                            Title = title,
-                            SubTitle = subtitle,
-                            Score = 100,
-                            IcoPath = searchSource.IconPath,
-                            ActionKeywordAssigned = searchSource.ActionKeyword == SearchSourceGlobalPluginWildCardSign ? string.Empty : searchSource.ActionKeyword,
-                            Action = c =>
-                            {
-                                if (_settings.OpenInNewBrowser)
-                                {
-                                    searchSource.Url.Replace("{q}", Uri.EscapeDataString(keyword)).NewBrowserWindow(_settings.BrowserPath);
-                                }
-                                else
-                                {
-                                    searchSource.Url.Replace("{q}", Uri.EscapeDataString(keyword)).NewTabInBrowser(_settings.BrowserPath);
-                                }
-
-                                return true;
-                            }
-                        };
-
-                        results.Add(result);
-                        UpdateResultsFromSuggestion(results, keyword, subtitle, searchSource, query);                        
+                        url = searchSource.Url;
                     }
+
+                    result.Action = c =>
+                    {
+                        if (_settings.OpenInNewBrowser)
+                        {
+                            url.Replace("{q}", Uri.EscapeDataString(keyword)).NewBrowserWindow(_settings.BrowserPath);
+                        }
+                        else
+                        {
+                            url.Replace("{q}", Uri.EscapeDataString(keyword)).NewTabInBrowser(_settings.BrowserPath);
+                        }
+
+                        return true;
+                    };
+                    results.Add(result);
+                    UpdateResultsFromSuggestion(results, keyword, subtitle, searchSource, query);
                 }
             }
 
